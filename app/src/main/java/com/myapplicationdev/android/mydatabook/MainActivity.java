@@ -88,8 +88,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.content_frame, fragment);
-                transaction.commit();
+                if(fragment != null){
+                    transaction.replace(R.id.content_frame, fragment);
+                    transaction.commit();
+                }
                 ab.setTitle(msg);
                 drawerLayout.closeDrawers();
                 return true;
