@@ -5,6 +5,7 @@ import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -24,8 +25,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class AnniversaryFragment extends Fragment {
     Button btnEditAnn;
     TextView tvAnn;
-    DrawerLayout drawerLayout;
-    ActionBarDrawerToggle toggle;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,11 +38,11 @@ public class AnniversaryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_anniversary, container, false);
+        SharedPreferences sharedPreferences = getActivity().getPreferences(0);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         btnEditAnn = v.findViewById(R.id.btnAnn);
         tvAnn = v.findViewById(R.id.tvAnn);
-
-
-
+        tvAnn.setText(sharedPreferences.getString("ann", "Hello Anniversary"));
 
         btnEditAnn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +56,8 @@ public class AnniversaryFragment extends Fragment {
                         EditText etDialog = d.findViewById(R.id.etDialog);
                         Log.d("dialog", etDialog.getText().toString());
                         tvAnn.setText(etDialog.getText().toString());
+                        editor.putString("ann", etDialog.getText().toString());
+                        editor.apply();
                         dialog.dismiss();
                     }
                 }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
