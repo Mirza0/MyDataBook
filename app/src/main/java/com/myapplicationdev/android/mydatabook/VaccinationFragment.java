@@ -1,64 +1,63 @@
 package com.myapplicationdev.android.mydatabook;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link VaccinationFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class VaccinationFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public VaccinationFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment VaccinationFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static VaccinationFragment newInstance(String param1, String param2) {
-        VaccinationFragment fragment = new VaccinationFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    Button btnEditVac;
+    TextView tvVac;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_vaccination, container, false);
+        View v = inflater.inflate(R.layout.fragment_anniversary, container, false);
+        btnEditVac = v.findViewById(R.id.btnAnn);
+        tvVac = v.findViewById(R.id.tvAnn);
+
+        btnEditVac.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Edit Bio");
+                builder.setView(inflater.inflate(R.layout.custom_dialog, null)).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Dialog d = (Dialog) dialog;
+                        EditText etDialog = d.findViewById(R.id.etDialog);
+                        Log.d("dialog", etDialog.getText().toString());
+                        tvVac.setText(etDialog.getText().toString());
+                        dialog.dismiss();
+                    }
+                }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.d("dialog", "onClick: cancel");
+                        dialog.cancel();
+                    }
+                });
+                builder.create().show();
+
+            }
+        });
+        return v;
     }
 }
