@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                         msg = "Anniversary";
                         break;
                     case R.id.menuItemAbout:
-                        Intent intent = new Intent(MainActivity.this, AboutUsActivity.class);
+                        Intent intent = new Intent(MainActivity.this, AboutUs.class);
                         startActivity(intent);
                         break;
                 }
