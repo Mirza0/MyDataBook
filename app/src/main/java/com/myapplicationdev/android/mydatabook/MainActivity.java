@@ -23,6 +23,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -53,6 +54,17 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(drawerToggle);
         ab.setDisplayHomeAsUpEnabled(true);
 
+
+        FloatingActionButton fab = findViewById(R.id.fabanni);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.addDrawerListener(drawerToggle);
+                drawerLayout.openDrawer(navView);
+            }
+        });
+
+
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
@@ -80,8 +92,11 @@ public class MainActivity extends AppCompatActivity {
                 }
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.content_frame, fragment);
-                transaction.commit();
+                if(fragment != null){
+                    transaction.replace(R.id.content_frame, fragment);
+                    transaction.commit();
+                }
+
                 ab.setTitle(msg);
                 drawerLayout.closeDrawers();
                 return true;

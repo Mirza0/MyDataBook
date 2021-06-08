@@ -26,7 +26,6 @@ public class AnniversaryFragment extends Fragment {
     TextView tvAnn;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
-    FloatingActionButton btnAnnSearch;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,7 +41,7 @@ public class AnniversaryFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_anniversary, container, false);
         btnEditAnn = v.findViewById(R.id.btnAnn);
         tvAnn = v.findViewById(R.id.tvAnn);
-        btnAnnSearch = v.findViewById(R.id.fabanni);
+
 
 
 
@@ -72,15 +71,6 @@ public class AnniversaryFragment extends Fragment {
             }
         });
 
-         btnAnnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                View main_view = inflater.inflate(R.layout.activity_main, null);
-                drawerLayout = main_view.findViewById(R.id.drawer_layout);
-                toggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, R.string.drawer_open, R.string.drawer_close);
-                drawerLayout.addDrawerListener(toggle);
-            }
-        });
 
         return v;
     }
