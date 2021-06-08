@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         drawerList = findViewById(R.id.left_drawer);
 
-        drawerItems = new String[] {"Bio", "Vaccination", "Anniversary"};
+        drawerItems = new String[] {"Bio", "Vaccination", "Anniversary", "About Us"};
         ab = getSupportActionBar();
 
         currentTitle = this.getTitle().toString();
@@ -72,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
                     fragment = new VaccinationFragment();
                 else if (position == 2)
                     fragment = new AnniversaryFragment();
+                else if (position == 3)
+                    fragment = new AboutUsFragment();
 
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction trans = fm.beginTransaction();
