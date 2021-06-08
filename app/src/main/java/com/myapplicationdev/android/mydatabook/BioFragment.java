@@ -29,9 +29,9 @@ public class BioFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_anniversary, container, false);
-        btnEditBio = v.findViewById(R.id.btnAnn);
-        tvBio = v.findViewById(R.id.tvAnn);
+        View v = inflater.inflate(R.layout.fragment_bio, container, false);
+        btnEditBio = v.findViewById(R.id.btnBio);
+        tvBio = v.findViewById(R.id.tvBio);
 
         btnEditBio.setOnClickListener(new View.OnClickListener() {
             @Override
