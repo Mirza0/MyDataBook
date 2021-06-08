@@ -5,6 +5,20 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/tvAuthors"
+        android:textSize="25dp"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/ivRP"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/ajax_loader"/>
+
+    <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

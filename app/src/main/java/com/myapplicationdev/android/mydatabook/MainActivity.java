@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.menuItemAbout:
                         intent = new Intent(MainActivity.this, AboutUs.class);
                         startActivity(intent);
-                        finish();
+//                        finish();
                         break;
                 }
                 FragmentManager fragmentManager = getSupportFragmentManager();
