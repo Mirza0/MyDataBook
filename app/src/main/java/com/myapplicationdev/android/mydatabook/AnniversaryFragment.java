@@ -44,20 +44,33 @@ public class AnniversaryFragment extends Fragment {
         tvAnn = v.findViewById(R.id.tvAnn);
         tvAnn.setText(sharedPreferences.getString("ann", "Hello Anniversary"));
 
+
+
+
+
         btnEditAnn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Edit Bio");
+                builder.setTitle("Edit Anniversary");
+
+                View v2 = inflater.inflate(R.layout.custom_dialog, container, false);
+                EditText etDialog2 = v2.findViewById(R.id.etDialog);
+                etDialog2.setText("hihi");
+
                 builder.setView(inflater.inflate(R.layout.custom_dialog, null)).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Dialog d = (Dialog) dialog;
                         EditText etDialog = d.findViewById(R.id.etDialog);
+
                         Log.d("dialog", etDialog.getText().toString());
                         tvAnn.setText(etDialog.getText().toString());
                         editor.putString("ann", etDialog.getText().toString());
                         editor.apply();
+
+
+
                         dialog.dismiss();
                     }
                 }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

@@ -60,8 +60,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                drawerLayout.addDrawerListener(drawerToggle);
-                drawerLayout.openDrawer(navView);
+                 drawerLayout.openDrawer(navView);
             }
         });
 

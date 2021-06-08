@@ -41,16 +41,21 @@ public class VaccinationFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Edit Bio");
+                builder.setTitle("Edit Vaccination");
                 builder.setView(inflater.inflate(R.layout.custom_dialog, null)).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+
+
+
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
                         Dialog d = (Dialog) dialog;
                         EditText etDialog = d.findViewById(R.id.etDialog);
                         Log.d("dialog", etDialog.getText().toString());
                         tvVac.setText(etDialog.getText().toString());
                         editor.putString("vac", etDialog.getText().toString());
                         editor.apply();
+
                         dialog.dismiss();
                     }
                 }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
