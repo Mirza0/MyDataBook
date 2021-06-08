@@ -29,7 +29,7 @@ public class VaccinationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_vaccination container, false);
+        View v = inflater.inflate(R.layout.fragment_vaccination, container, false);
         btnEditVac = v.findViewById(R.id.btnVac);
         tvVac = v.findViewById(R.id.tvVac);
 
