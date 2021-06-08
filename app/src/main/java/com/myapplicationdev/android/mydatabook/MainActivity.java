@@ -27,11 +27,9 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String[] drawerItems;
     private DrawerLayout drawerLayout;
     private NavigationView navView;
     private ActionBarDrawerToggle drawerToggle;
-    ArrayAdapter<String> aa;
     String currentTitle;
     ActionBar ab;
 
@@ -42,18 +40,10 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navView = findViewById(R.id.navView);
-
-        drawerItems = new String[] {"Bio", "Vaccination", "Anniversary", "About Us"};
         ab = getSupportActionBar();
-
         currentTitle = this.getTitle().toString();
-        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_open, R.string.drawer_close) {
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
-                ab.setTitle(currentTitle);
-            }
 
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_open, R.string.drawer_close) {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
@@ -67,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 Fragment fragment = null;
+                Intent intent;
                 String msg = "";
                 switch (item.getItemId()) {
                     case R.id.menuItemBio:
@@ -82,16 +73,15 @@ public class MainActivity extends AppCompatActivity {
                         msg = "Anniversary";
                         break;
                     case R.id.menuItemAbout:
-                        Intent intent = new Intent(MainActivity.this, AboutUs.class);
+                        intent = new Intent(MainActivity.this, AboutUs.class);
                         startActivity(intent);
+                        finish();
                         break;
                 }
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
-                if(fragment != null){
-                    transaction.replace(R.id.content_frame, fragment);
-                    transaction.commit();
-                }
+                transaction.replace(R.id.content_frame, fragment);
+                transaction.commit();
                 ab.setTitle(msg);
                 drawerLayout.closeDrawers();
                 return true;
