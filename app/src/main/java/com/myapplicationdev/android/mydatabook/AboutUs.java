@@ -1,12 +1,11 @@
 package com.myapplicationdev.android.mydatabook;
 
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,9 +24,11 @@ public class AboutUs extends AppCompatActivity {
         tvAuthors.setText("Created by Julien, Ju Long, Mirza and David.");
         ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
-        String url = "https://upload.wikimedia.org/wikipedia/commons/8/80/Republic_Polytechnic_Logo.jpg";
-        Picasso.with(this).load(url).into(iv);
-
+        String url = "http://upload.wikimedia.org/wikipedia/commons/8/80/Republic_Polytechnic_Logo.jpg";
+        Glide.with(this)
+                .load(url)
+                .apply(new RequestOptions().placeholder(R.drawable.ajax_loader).error(R.drawable.error))
+                .into(iv);
 
     }
 
